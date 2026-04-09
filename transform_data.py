@@ -5,12 +5,8 @@ import pandas as pd
 
 def clean_sales_data(input_filename: str, output_filename: str):
     """
-    Reads raw sales data, applies business logic transformations, handles 
+    Reads validated sales data, applies business logic transformations, handles 
     missing values, and outputs the cleansed dataset.
-    
-    Args:
-        input_filename (str): Path to the raw source data CSV.
-        output_filename (str): Path to serialize the transformed CSV.
     """
     print(f"Reading source data from: {input_filename}...")
     
@@ -22,7 +18,7 @@ def clean_sales_data(input_filename: str, output_filename: str):
     # Calculate derived metric: total revenue per transaction
     df['total_revenue'] = df['price'] * df['quantity']
     
-    # Drop records containing null values to ensure data integrity
+    # Drop records containing null values to ensure structural integrity
     df = df.dropna()
     
     df.to_csv(output_filename, index=False)
@@ -30,4 +26,4 @@ def clean_sales_data(input_filename: str, output_filename: str):
     print(f"Transformed dataset successfully written to: {output_filename}")
 
 if __name__ == "__main__":
-    clean_sales_data("raw_sales_data.csv", "cleaned_sales_data.csv")
+    clean_sales_data("validated_data.csv", "cleaned_sales_data.csv")
