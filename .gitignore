@@ -1,0 +1,12 @@
+# Environment
+venv/
+.env
+
+# Datasets & Databases
+*.csv
+*.db
+*.sqlite
+
+# Python Cache
+__pycache__/
+*.pyc
