@@ -1,4 +1,4 @@
-# E-Commerce ETL Pipeline 🚀
+# E-Commerce ETL Pipeline 
 
 This repository contains a fully functional, local Extract, Transform, Load (ETL) data pipeline built with Python and SQLite.
 
