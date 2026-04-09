@@ -23,9 +23,21 @@ This project simulates a real-world data engineering workflow consisting of five
 
 To run this pipeline on your local machine:
 
-1. Create a virtual environment: `python -m venv venv`
-2. Activate the environment and install dependencies: `pip install pandas faker`
-3. Execute the pipeline scripts sequentially:
+1. **Create a virtual environment:**
+   ```bash
+   python -m venv venv
+   ```
+
+2. **Activate the environment:**
+   - On **Windows**: `.\venv\Scripts\activate`
+   - On **Mac/Linux**: `source venv/bin/activate`
+
+3. **Install dependencies:**
+   ```bash
+   pip install pandas faker
+   ```
+
+4. **Execute the pipeline scripts sequentially:**
    ```bash
    python generate_data.py
    python quality_check.py
