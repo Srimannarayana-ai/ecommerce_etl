@@ -2,19 +2,22 @@
 Data Quality module to enforce data contracts and isolate invalid records.
 """
 import pandas as pd
+import logging
+
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
 def check_data_quality(input_filename: str, valid_output: str, quarantine_output: str):
     """
     Validates incoming raw data against strict business rules.
     Partitions the dataset into clean output for ingestion and a quarantined dataset for investigation.
     """
-    print(f"Initializing Data Quality Check on: {input_filename}")
+    logging.info(f"Initializing Data Quality Check on: {input_filename}")
     
     try:
         df = pd.read_csv(input_filename)
-        print(f"Loaded {len(df)} records for validation.\n")
+        logging.info(f"Loaded {len(df)} records for validation.")
     except FileNotFoundError:
-        print(f"Error: Raw data source '{input_filename}' not found.")
+        logging.error(f"Raw data source '{input_filename}' not found.")
         return
 
     # Data Quality Rules Definition
@@ -31,12 +34,12 @@ def check_data_quality(input_filename: str, valid_output: str, quarantine_output
     
     if not quarantined_data_df.empty:
         quarantined_data_df.to_csv(quarantine_output, index=False)
-        print(f"WARNING: Data quality breach detected.")
-        print(f"Quarantined {len(quarantined_data_df)} records to: '{quarantine_output}'.\n")
+        logging.warning(f"Data quality breach detected.")
+        logging.warning(f"Quarantined {len(quarantined_data_df)} records to: '{quarantine_output}'.")
     else:
-        print("Data Quality validation passed successfully.\n")
+        logging.info("Data Quality validation passed successfully.")
         
-    print(f"Validated {len(clean_data_df)} records successfully serialized to: '{valid_output}'.")
+    logging.info(f"Validated {len(clean_data_df)} records successfully serialized to: '{valid_output}'.")
 
 if __name__ == "__main__":
     check_data_quality("raw_sales_data.csv", "validated_data.csv", "quarantined_data.csv")

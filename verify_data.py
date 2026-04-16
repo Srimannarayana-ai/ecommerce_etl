@@ -3,6 +3,9 @@ Verification module to validate data integrity post-load.
 """
 import sqlite3
 import pandas as pd
+import logging
+
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
 def verify_database(db_filename: str):
     """
@@ -11,7 +14,7 @@ def verify_database(db_filename: str):
     Args:
         db_filename (str): Target SQLite database file path.
     """
-    print("Establishing database connection for validation checks...\n")
+    logging.info("Establishing database connection for validation checks...")
     conn = sqlite3.connect(db_filename)
     
     query = """
@@ -24,14 +27,13 @@ def verify_database(db_filename: str):
     LIMIT 5;
     """
     
-    print("--- Top 5 Transactions by Revenue ---")
+    logging.info("--- Top 5 Transactions by Revenue ---")
     df = pd.read_sql(query, conn)
-    print(df)
-    print("\n")
+    logging.info(f"\n{df}")
     
     query_sum = "SELECT SUM(total_revenue) AS grand_total FROM sales;"
     df_sum = pd.read_sql(query_sum, conn)
-    print(f"Aggregated Gross Revenue: ${df_sum['grand_total'][0]:,.2f}")
+    logging.info(f"Aggregated Gross Revenue: ${df_sum['grand_total'][0]:,.2f}")
     
     conn.close()
 

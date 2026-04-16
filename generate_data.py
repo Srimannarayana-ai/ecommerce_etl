@@ -4,6 +4,9 @@ Module to simulate and generate raw e-commerce transaction data.
 import pandas as pd
 from faker import Faker
 import random
+import logging
+
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
 fake = Faker()
 NUM_RECORDS = 100
@@ -14,7 +17,7 @@ def generate_ecommerce_data(num_records: int):
     Generates synthetic e-commerce transaction records and persists them to a CSV file.
     Includes intentional data anomalies to test downstream validation logic.
     """
-    print(f"Generating {num_records} transaction records...")
+    logging.info(f"Generating {num_records} transaction records...")
     
     data = []
     
@@ -40,7 +43,7 @@ def generate_ecommerce_data(num_records: int):
     output_filename = "raw_sales_data.csv"
     df.to_csv(output_filename, index=False)
     
-    print(f"Successfully generated and serialized raw data to: {output_filename}")
+    logging.info(f"Successfully generated and serialized raw data to: {output_filename}")
 
 if __name__ == "__main__":
     generate_ecommerce_data(NUM_RECORDS)
