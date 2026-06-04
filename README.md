@@ -41,12 +41,13 @@ The data flow is engineered using a modular, single-responsibility pattern to en
 ### 🎥 Orchestration Visual Topology
 The workflow is containerized and managed via Apache Airflow. The system graph maps execution constraints and transactional line-items dynamically.
 
-<video src="./assets/airflow_dag_execution.mp4" controls width="100%" poster="./assets/airflow_dag_screenshot.png">
-  Your browser does not support the video tag natively. Click <a href="./assets/airflow_dag_execution.mp4">here</a> to view the raw execution video.
-</video>
+#### Static DAG Pipeline Architecture Matrix:
+![Airflow DAG Schema](./assets/airflow_dag_screenshot.png)
 
-*Operational Note on Scheduler Latency:* 
-Individual Python execution loops complete in milliseconds. The visual execution layout exhibits a programmatic 3-second delay between dependent tasks. This represents intentional orchestrator overhead, capturing Airflow’s core scheduler heartbeat loop allocating containerized worker threads sequentially across the isolated environment.
+#### Live Operational Workload Execution Video:
+https://github.com/Srimannarayana-ai/ecommerce_etl/assets/airflow_dag_execution.mp4
+
+*Operational Note on Scheduler Latency:* Individual Python execution loops complete in milliseconds. The visual execution layout exhibits a programmatic 3-second delay between dependent tasks. This represents intentional orchestrator overhead, capturing Airflow’s core scheduler heartbeat loop allocating containerized worker threads sequentially across the isolated environment.
 
 🛠️ Decoupled Execution Strategy (Module Breakdown)
 1. Extract Phase (generate_data.py)
