@@ -37,7 +37,8 @@ The data flow is engineered using a modular, single-responsibility pattern to en
         │
         ▼
   [5. VERIFY]        ──> Automated Transaction Audits & SQL Analytics
-
+```
+  
 ### 🎥 Orchestration Visual Topology
 The workflow is containerized and managed via Apache Airflow. The system graph maps execution constraints and transactional line-items dynamically.
 
