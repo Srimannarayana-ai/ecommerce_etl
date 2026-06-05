@@ -46,7 +46,7 @@ The workflow is containerized and managed via Apache Airflow. The system graph m
 ![Airflow DAG Schema](./assets/airflow_dag_screenshot.png)
 
 #### Live Operational Workload Execution Video:
-*💡 [Click here to view the live processing video snippet](./assets/assets/airflow_dag_execution.mp4)*
+*💡 [Click here to view the live processing video snippet](./assets/airflow_dag_execution.mp4)*
 
 *Operational Note on Scheduler Latency:* Individual Python execution loops complete in milliseconds. The visual execution layout exhibits a programmatic 3-second delay between dependent tasks. This represents intentional orchestrator overhead, capturing Airflow’s core scheduler heartbeat loop allocating containerized worker threads sequentially across the isolated environment.
 
